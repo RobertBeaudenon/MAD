@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -30,7 +29,6 @@ ALLOWED_HOSTS = []
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200"
 ]
-
 
 # Application definition
 
@@ -78,17 +76,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'flightscheduler.wsgi.application'
 
-
 # Database: all info must be inseted here password etc//
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',# sqlite defualt databse
-        'NAME': BASE_DIR / 'flight_scheduler.sqlite3',# it's in the current directory : flight_shceduler will appear in our root directory as the new db name
+        'ENGINE': 'djongo',  # sqlite defualt databse
+        'NAME': 'MAD',
+        # it's in the current directory : flight_shceduler will appear in our root directory as the new db name
+        'HOST': 'mongodb://localhost:27017/MAD',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -108,7 +106,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -121,7 +118,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
