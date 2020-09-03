@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
 from .api import views
+from .views import index
 
 # Because we used ViewSet then we must use Router, it is smart because it knows how to differentiate between the CRUD
 # operations (the http verbs)
@@ -27,6 +28,7 @@ router.register(r'movies', views.MovieViewSet)
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('checkserver/', index, name='index'),
     # for the router
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
