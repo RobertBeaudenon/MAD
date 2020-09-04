@@ -23,9 +23,21 @@ class MovieViewSet(viewsets.ModelViewSet):
     # IF we are returning a list of all the objects to the users then we overide the list method in order to modify what
     # we are returning by adding the MovieMiniSerializer that return only (id, title)
     def list(self, request, *args, **kwargs):
+
+        print(self.get_queryset())
+        print(self.get_permissions())
+
+        # typically be set to an instance of the contrib.auth package's User class.
+        print(request.user)
+
+        # property is used for any additional authentication information, for example, it may be used to represent an
+        # authentication token that the request was signed with.
+        print(request.auth)
+
+        print(request.data)
+
         # Get our data
         movies = Movie.objects.all()
-        print(self.get_object())
         # Decide how we want to return it to the API, the specific fields that we want to return defined in serializer
         serializer = MovieMiniSerializer(movies, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
