@@ -52,7 +52,7 @@ INSTALLED_APPS = [
 
     # Local
     'flightscheduler.api',
-    'flightscheduler.djangorestauth',
+    'flightscheduler.users',
 
     # 3rd party
     'corsheaders',
@@ -62,7 +62,7 @@ INSTALLED_APPS = [
 
 ]
 
-AUTH_USER_MODEL = 'djangorestauth.CustomUser'
+AUTH_USER_MODEL = 'users.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
