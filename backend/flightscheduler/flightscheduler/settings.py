@@ -30,6 +30,13 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200"
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,10 +46,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
+
+    # Local
     'flightscheduler.api',
+    'flightscheduler.djangorestauth',
+
+    # 3rd party
     'corsheaders',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+
 ]
+
+AUTH_USER_MODEL = 'djangorestauth.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
