@@ -32,8 +32,11 @@ CORS_ALLOWED_ORIGINS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        # For web interaction, don't forget to include CSRF tokens to prevent from these kinds of attacks else its gona
+        # through errors when you tes
+        # 'rest_framework.authentication.SessionAuthentication',
+        # For Mobile/other
+        'rest_framework.authentication.TokenAuthentication',
     ]
 }
 
