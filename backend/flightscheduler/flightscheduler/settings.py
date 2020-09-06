@@ -31,13 +31,16 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
+    'DEFAULT_AUTHENTICATION_CLASSES': (
         # For web interaction, don't forget to include CSRF tokens to prevent from these kinds of attacks else its gona
         # through errors when you tes
         # 'rest_framework.authentication.SessionAuthentication',
         # For Mobile/other
         'rest_framework.authentication.TokenAuthentication',
-    ]
+    ),
+    'DEFAULT_PERMISSIONS_CLASSES': (  # To make sure API endpoints have permission
+        'rest_framework.permission.IsAuthenticated'
+    ),
 }
 
 # Application definition
@@ -63,6 +66,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'rest_auth.registration',
+    'djoser',
 
 ]
 

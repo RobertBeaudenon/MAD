@@ -18,6 +18,7 @@ from django.urls import include, path
 from rest_framework import routers
 from .api import views
 from .views import index
+from .users import urls
 
 # Because we used ViewSet then we must use Router, it is smart because it knows how to differentiate between the CRUD
 # operations (the http verbs)
@@ -34,4 +35,5 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
+    path('auth/', include(urls)),
 ]
