@@ -14,6 +14,8 @@ from rest_framework.authtoken.models import Token
 @api_view(['Get'])
 @permission_classes([IsAuthenticated])
 def restricted(request, *args, **kwargs):
+    print(request.user)
+    print(request.auth)
     return Response(data="only for logged in user", status=status.HTTP_200_OK)
 
 
