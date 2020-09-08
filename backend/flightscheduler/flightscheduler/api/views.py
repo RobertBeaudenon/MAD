@@ -36,6 +36,8 @@ class MovieViewSet(viewsets.ModelViewSet):
 
         print(request.data)
 
+        print(self.request.data)
+
         # Get our data
         movies = Movie.objects.all()
         # Decide how we want to return it to the API, the specific fields that we want to return defined in serializer

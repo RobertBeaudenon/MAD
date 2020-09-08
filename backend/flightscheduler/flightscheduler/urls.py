@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
 from .api import views
+from .users import views as viewuser
 from .views import index
 from .users import urls
 
@@ -24,6 +25,8 @@ from .users import urls
 # operations (the http verbs)
 router = routers.DefaultRouter()
 router.register(r'movies', views.MovieViewSet)
+router.register(r'registration', viewuser.RegistrationView)
+
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
