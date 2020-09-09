@@ -20,15 +20,26 @@ def restricted(request, *args, **kwargs):
 
 
 class RegistrationView(viewsets.ModelViewSet):
-    queryset = CustomUser.objects.all()  # I don't know what to write here :D
+    queryset = CustomUser.objects.all()
     serializer_class = UserCreateSerializer
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
-        # signals.post_save.send(sender=self.__class__, user=user, request=self.request)
+        print(user)
+        signals.post_save.send(sender=self.__class__, user=user, request=self.request)
         headers = self.get_success_headers(serializer.data)
-        token = Token.objects.create(user=user)
-        print(token.key)
-        return Response(data=token.key, status=status.HTTP_201_CREATED, headers=headers)
+
+        # 1st Way of creating token
+        # token = Token.objects.create(user=user)
+        #print(token.key)
+
+        # 2nd way of creating token that is cleaner
+        signals.post_save.send(sender=self.__class__, user=user, request=self.request)
+
+        # then we query the token for this specific user that was returned by the serializer
+        token = Token.objects.get(user=user).key
+        print(token)
+
+        return Response(data=token, status=status.HTTP_201_CREATED, headers=headers)
